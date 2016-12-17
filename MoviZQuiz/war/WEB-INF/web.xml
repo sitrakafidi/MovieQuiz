@@ -10,6 +10,16 @@
 	<welcome-file-list>
 		<welcome-file>index.html</welcome-file>
 	</welcome-file-list>
+	
+	<servlet>
+		<servlet-name>Datastore</servlet-name>
+		<servlet-class>stuff.DatastoreServlet</servlet-class>
+	</servlet>
+	<servlet-mapping>
+		<servlet-name>Datastore</servlet-name>
+		<url-pattern>/datastore</url-pattern>
+	</servlet-mapping>
+	
  <servlet>
   <servlet-name>SystemServiceServlet</servlet-name>
   <servlet-class>com.google.api.server.spi.SystemServiceServlet</servlet-class>
