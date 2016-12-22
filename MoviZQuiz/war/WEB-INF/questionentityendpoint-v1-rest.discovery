@@ -1,0 +1,208 @@
+{
+ "kind": "discovery#restDescription",
+ "etag": "\"ODRTh3xaRR64wpeXJSlF33HMN-0/4nKOevN09UXiTpOODJrA9VkJld0\"",
+ "discoveryVersion": "v1",
+ "id": "questionentityendpoint:v1",
+ "name": "questionentityendpoint",
+ "version": "v1",
+ "description": "This is an API",
+ "ownerDomain": "mycompany.com",
+ "ownerName": "mycompany.com",
+ "packagePath": "services",
+ "icons": {
+  "x16": "https://www.gstatic.com/images/branding/product/1x/googleg_16dp.png",
+  "x32": "https://www.gstatic.com/images/branding/product/1x/googleg_32dp.png"
+ },
+ "protocol": "rest",
+ "baseUrl": "https://movizquiz.appspot.com/_ah/api/questionentityendpoint/v1/",
+ "basePath": "/_ah/api/questionentityendpoint/v1/",
+ "rootUrl": "https://movizquiz.appspot.com/_ah/api/",
+ "servicePath": "questionentityendpoint/v1/",
+ "batchPath": "batch",
+ "parameters": {
+  "alt": {
+   "type": "string",
+   "description": "Data format for the response.",
+   "default": "json",
+   "enum": [
+    "json"
+   ],
+   "enumDescriptions": [
+    "Responses with Content-Type of application/json"
+   ],
+   "location": "query"
+  },
+  "fields": {
+   "type": "string",
+   "description": "Selector specifying which fields to include in a partial response.",
+   "location": "query"
+  },
+  "key": {
+   "type": "string",
+   "description": "API key. Your API key identifies your project and provides you with API access, quota, and reports. Required unless you provide an OAuth 2.0 token.",
+   "location": "query"
+  },
+  "oauth_token": {
+   "type": "string",
+   "description": "OAuth 2.0 token for the current user.",
+   "location": "query"
+  },
+  "prettyPrint": {
+   "type": "boolean",
+   "description": "Returns response with indentations and line breaks.",
+   "default": "true",
+   "location": "query"
+  },
+  "quotaUser": {
+   "type": "string",
+   "description": "Available to use for quota purposes for server-side applications. Can be any arbitrary string assigned to a user, but should not exceed 40 characters. Overrides userIp if both are provided.",
+   "location": "query"
+  },
+  "userIp": {
+   "type": "string",
+   "description": "IP address of the site where the request originates. Use this if you want to enforce per-user limits.",
+   "location": "query"
+  }
+ },
+ "auth": {
+  "oauth2": {
+   "scopes": {
+    "https://www.googleapis.com/auth/userinfo.email": {
+     "description": "View your email address"
+    }
+   }
+  }
+ },
+ "schemas": {
+  "CollectionResponse_QuestionEntity": {
+   "id": "CollectionResponse_QuestionEntity",
+   "type": "object",
+   "properties": {
+    "items": {
+     "type": "array",
+     "items": {
+      "$ref": "QuestionEntity"
+     }
+    },
+    "nextPageToken": {
+     "type": "string"
+    }
+   }
+  },
+  "QuestionEntity": {
+   "id": "QuestionEntity",
+   "type": "object",
+   "properties": {
+    "answer": {
+     "type": "integer",
+     "format": "int32"
+    },
+    "choices": {
+     "type": "array",
+     "items": {
+      "type": "string"
+     }
+    },
+    "id": {
+     "type": "string"
+    },
+    "question": {
+     "type": "string"
+    }
+   }
+  }
+ },
+ "methods": {
+  "getQuestionEntity": {
+   "id": "questionentityendpoint.getQuestionEntity",
+   "path": "questionentity/{id}",
+   "httpMethod": "GET",
+   "parameters": {
+    "id": {
+     "type": "string",
+     "required": true,
+     "location": "path"
+    }
+   },
+   "parameterOrder": [
+    "id"
+   ],
+   "response": {
+    "$ref": "QuestionEntity"
+   },
+   "scopes": [
+    "https://www.googleapis.com/auth/userinfo.email"
+   ]
+  },
+  "insertQuestionEntity": {
+   "id": "questionentityendpoint.insertQuestionEntity",
+   "path": "questionentity",
+   "httpMethod": "POST",
+   "request": {
+    "$ref": "QuestionEntity",
+    "parameterName": "resource"
+   },
+   "response": {
+    "$ref": "QuestionEntity"
+   },
+   "scopes": [
+    "https://www.googleapis.com/auth/userinfo.email"
+   ]
+  },
+  "listQuestionEntity": {
+   "id": "questionentityendpoint.listQuestionEntity",
+   "path": "questionentity",
+   "httpMethod": "GET",
+   "parameters": {
+    "cursor": {
+     "type": "string",
+     "location": "query"
+    },
+    "limit": {
+     "type": "integer",
+     "format": "int32",
+     "location": "query"
+    }
+   },
+   "response": {
+    "$ref": "CollectionResponse_QuestionEntity"
+   },
+   "scopes": [
+    "https://www.googleapis.com/auth/userinfo.email"
+   ]
+  },
+  "removeQuestionEntity": {
+   "id": "questionentityendpoint.removeQuestionEntity",
+   "path": "questionentity/{id}",
+   "httpMethod": "DELETE",
+   "parameters": {
+    "id": {
+     "type": "string",
+     "required": true,
+     "location": "path"
+    }
+   },
+   "parameterOrder": [
+    "id"
+   ],
+   "scopes": [
+    "https://www.googleapis.com/auth/userinfo.email"
+   ]
+  },
+  "updateQuestionEntity": {
+   "id": "questionentityendpoint.updateQuestionEntity",
+   "path": "questionentity",
+   "httpMethod": "PUT",
+   "request": {
+    "$ref": "QuestionEntity",
+    "parameterName": "resource"
+   },
+   "response": {
+    "$ref": "QuestionEntity"
+   },
+   "scopes": [
+    "https://www.googleapis.com/auth/userinfo.email"
+   ]
+  }
+ }
+}
