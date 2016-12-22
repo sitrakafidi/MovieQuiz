@@ -1,0 +1,55 @@
+<!DOCTYPE html>
+<html ng-app='MovieStore'>
+<head>
+<meta charset="utf-8" />
+<title></title>
+<script>document.write('<base href="' + document.location + '" />');</script>
+<link href="style.css" rel="stylesheet" />
+<script data-semver="1.5.8"	src="https://code.angularjs.org/1.5.8/angular.js" data-require="angular.js@1.5.x"></script>
+<script src="js/app.js"></script>
+</head>
+<body ng-controller="MovieController as movie">
+	<form ng-show="movie.game.question==0" ng-submit="movie.play()">
+		<h1>Qui est le directeur ?</h1>
+		<!--div>
+        <input ng-model="review.color" type="radio" value="1" />{{movie.movies[0].title}}<br/>
+        <input ng-model="review.color" type="radio" value="2" />{{movie.movies[1].title}}<br/>
+        <input ng-model="review.color" type="radio" value="3" />{{movie.movies[2].title}}<br/>
+    </div-->
+		<input type="radio" value="1" />{{movie.game.question}}<br /> 
+		<input type="radio" value="2" />2<br /> 
+		<input type="radio" value="3" />3<br />
+		<input class="btn-primary" type="submit" value="Submit">
+	</form>
+
+	<form ng-show="movie.game.question==1" ng-submit="movie.play()">
+		<h1>Quel est l'année de sortie ?</h1>
+		<!--div ng-controller="MoviesCont as movie">
+        <input ng-model="review.color" type="radio" value="1" />{{movie.movies[0].published}}<br/>
+        <input ng-model="review.color" type="radio" value="2" />{{movie.movies[1].published}}<br/>
+        <input ng-model="review.color" type="radio" value="3" />{{movie.movies[2].published}}<br/>
+    </div-->
+		<input type="radio" value="1" />{{movie.game.question}}<br /> 
+		<input type="radio"	value="2" />5<br /> 
+		<input type="radio" value="3" />6<br /> 
+		<input class="btn-primary" type="submit" value="Submit">
+	</form>
+
+	<form ng-show="movie.game.question==2" ng-submit="game.play()">
+		<h1>Quel est l'origine du film ?</h1>
+		<!--div ng-controller="MoviesCont as movie">
+        <input ng-model="review.color" type="radio" value="1" />{{movie.movies[0].director}}<br/>
+        <input ng-model="review.color" type="radio" value="2" />{{movie.movies[1].director}}<br/>
+        <input ng-model="review.color" type="radio" value="3" />{{movie.movies[2].director}}<br/>
+    </div-->
+		<input type="radio" value="1" />{{movie.game.question}}<br /> 
+		<input type="radio" value="2" />8<br /> <input type="radio" value="3" />9<br /> 
+		<input class="btn-primary" type="submit" value="suivant">
+	</form>
+	
+	<div ng-show="movie.game.question==0 && movie.game.turn==10">Score : {{movie.game.score}}</div>
+
+
+</body>
+
+</html>
