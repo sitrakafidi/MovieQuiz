@@ -23,16 +23,13 @@ public class QuestionEntity {
 	@Persistent
 	int answer;
 	
-	@Persistent
-	int type;
 	
-	public QuestionEntity(String id, String body, List<String> choices, int answer, int type) {
+	public QuestionEntity(String id, String body, List<String> choices, int answer) {
 		super();
 		this.id = id;
 		this.body = body;
 		this.choices = choices;
 		this.answer = answer;
-		this.type = type;
 	}
 	
 	public QuestionEntity(String body, List<String> choices, int answer, int type) {
@@ -41,7 +38,6 @@ public class QuestionEntity {
 		this.body = body;
 		this.choices = choices;
 		this.answer = answer;
-		this.type = type;
 	}
 	
 	public String getId() {
@@ -76,11 +72,4 @@ public class QuestionEntity {
 		this.answer = answer;
 	}
 	
-	public int getType(){
-		return this.type;
-	}
-	
-	public void setType(int type){
-		this.type = type;
-	}
 }

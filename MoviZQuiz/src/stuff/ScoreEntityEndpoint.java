@@ -19,9 +19,8 @@ import javax.persistence.EntityNotFoundException;
 import javax.jdo.PersistenceManager;
 import javax.jdo.Query;
 
-@Api(name = "questionentityendpoint", namespace = @ApiNamespace(ownerDomain = "mycompany.com", ownerName = "mycompany.com", packagePath = "services"))
-
-public class QuestionEntityEndpoint {
+@Api(name = "scoreentityendpoint", namespace = @ApiNamespace(ownerDomain = "mycompany.com", ownerName = "mycompany.com", packagePath = "services"))
+public class ScoreEntityEndpoint {
 
 	/**
 	 * This method lists all the entities inserted in datastore.
@@ -31,18 +30,18 @@ public class QuestionEntityEndpoint {
 	 * persisted and a cursor to the next page.
 	 */
 	@SuppressWarnings({ "unchecked", "unused" })
-	@ApiMethod(name = "listQuestionEntity")
-	public CollectionResponse<QuestionEntity> listQuestionEntity(
+	@ApiMethod(name = "listScoreEntity")
+	public CollectionResponse<ScoreEntity> listScoreEntity(
 			@Nullable @Named("cursor") String cursorString,
 			@Nullable @Named("limit") Integer limit) {
 
 		PersistenceManager mgr = null;
 		Cursor cursor = null;
-		List<QuestionEntity> execute = null;
+		List<ScoreEntity> execute = null;
 
 		try {
 			mgr = getPersistenceManager();
-			Query query = mgr.newQuery(QuestionEntity.class);
+			Query query = mgr.newQuery(ScoreEntity.class);
 			if (cursorString != null && cursorString != "") {
 				cursor = Cursor.fromWebSafeString(cursorString);
 				HashMap<String, Object> extensionMap = new HashMap<String, Object>();
@@ -54,20 +53,20 @@ public class QuestionEntityEndpoint {
 				query.setRange(0, limit);
 			}
 
-			execute = (List<QuestionEntity>) query.execute();
+			execute = (List<ScoreEntity>) query.execute();
 			cursor = JDOCursorHelper.getCursor(execute);
 			if (cursor != null)
 				cursorString = cursor.toWebSafeString();
 
 			// Tight loop for fetching all entities from datastore and accomodate
 			// for lazy fetch.
-			for (QuestionEntity obj : execute)
+			for (ScoreEntity obj : execute)
 				;
 		} finally {
 			mgr.close();
 		}
 
-		return CollectionResponse.<QuestionEntity> builder().setItems(execute)
+		return CollectionResponse.<ScoreEntity> builder().setItems(execute)
 				.setNextPageToken(cursorString).build();
 	}
 
@@ -77,16 +76,16 @@ public class QuestionEntityEndpoint {
 	 * @param id the primary key of the java bean.
 	 * @return The entity with primary key id.
 	 */
-	@ApiMethod(name = "getQuestionEntity")
-	public QuestionEntity getQuestionEntity(@Named("id") String id) {
+	@ApiMethod(name = "getScoreEntity")
+	public ScoreEntity getScoreEntity(@Named("id") String id) {
 		PersistenceManager mgr = getPersistenceManager();
-		QuestionEntity questionentity = null;
+		ScoreEntity scoreentity = null;
 		try {
-			questionentity = mgr.getObjectById(QuestionEntity.class, id);
+			scoreentity = mgr.getObjectById(ScoreEntity.class, id);
 		} finally {
 			mgr.close();
 		}
-		return questionentity;
+		return scoreentity;
 	}
 
 	/**
@@ -94,21 +93,21 @@ public class QuestionEntityEndpoint {
 	 * exists in the datastore, an exception is thrown.
 	 * It uses HTTP POST method.
 	 *
-	 * @param questionentity the entity to be inserted.
+	 * @param scoreentity the entity to be inserted.
 	 * @return The inserted entity.
 	 */
-	@ApiMethod(name = "insertQuestionEntity")
-	public QuestionEntity insertQuestionEntity(QuestionEntity questionentity) {
+	@ApiMethod(name = "insertScoreEntity")
+	public ScoreEntity insertScoreEntity(ScoreEntity scoreentity) {
 		PersistenceManager mgr = getPersistenceManager();
 		try {
-			if (containsQuestionEntity(questionentity)) {
+			if (containsScoreEntity(scoreentity)) {
 				throw new EntityExistsException("Object already exists");
 			}
-			mgr.makePersistent(questionentity);
+			mgr.makePersistent(scoreentity);
 		} finally {
 			mgr.close();
 		}
-		return questionentity;
+		return scoreentity;
 	}
 
 	/**
@@ -116,21 +115,21 @@ public class QuestionEntityEndpoint {
 	 * exist in the datastore, an exception is thrown.
 	 * It uses HTTP PUT method.
 	 *
-	 * @param questionentity the entity to be updated.
+	 * @param scoreentity the entity to be updated.
 	 * @return The updated entity.
 	 */
-	@ApiMethod(name = "updateQuestionEntity")
-	public QuestionEntity updateQuestionEntity(QuestionEntity questionentity) {
+	@ApiMethod(name = "updateScoreEntity")
+	public ScoreEntity updateScoreEntity(ScoreEntity scoreentity) {
 		PersistenceManager mgr = getPersistenceManager();
 		try {
-			if (!containsQuestionEntity(questionentity)) {
+			if (!containsScoreEntity(scoreentity)) {
 				throw new EntityNotFoundException("Object does not exist");
 			}
-			mgr.makePersistent(questionentity);
+			mgr.makePersistent(scoreentity);
 		} finally {
 			mgr.close();
 		}
-		return questionentity;
+		return scoreentity;
 	}
 
 	/**
@@ -139,23 +138,22 @@ public class QuestionEntityEndpoint {
 	 *
 	 * @param id the primary key of the entity to be deleted.
 	 */
-	@ApiMethod(name = "removeQuestionEntity")
-	public void removeQuestionEntity(@Named("id") String id) {
+	@ApiMethod(name = "removeScoreEntity")
+	public void removeScoreEntity(@Named("id") String id) {
 		PersistenceManager mgr = getPersistenceManager();
 		try {
-			QuestionEntity questionentity = mgr.getObjectById(QuestionEntity.class,
-					id);
-			mgr.deletePersistent(questionentity);
+			ScoreEntity scoreentity = mgr.getObjectById(ScoreEntity.class, id);
+			mgr.deletePersistent(scoreentity);
 		} finally {
 			mgr.close();
 		}
 	}
 
-	private boolean containsQuestionEntity(QuestionEntity questionentity) {
+	private boolean containsScoreEntity(ScoreEntity scoreentity) {
 		PersistenceManager mgr = getPersistenceManager();
 		boolean contains = true;
 		try {
-			mgr.getObjectById(QuestionEntity.class, questionentity.getId());
+			mgr.getObjectById(ScoreEntity.class, scoreentity.getId());
 		} catch (javax.jdo.JDOObjectNotFoundException ex) {
 			contains = false;
 		} finally {
