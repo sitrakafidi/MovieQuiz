@@ -28,6 +28,31 @@
   "ownerName" : "mycompany.com",
   "packagePath" : "services",
   "methods" : {
+    "scoreentityendpoint.listScoreEntity" : {
+      "path" : "scoreentity",
+      "httpMethod" : "GET",
+      "authLevel" : "NONE",
+      "scopes" : [ "https://www.googleapis.com/auth/userinfo.email" ],
+      "audiences" : [ ],
+      "clientIds" : [ "292824132082.apps.googleusercontent.com" ],
+      "rosyMethod" : "stuff.ScoreEntityEndpoint.listScoreEntity",
+      "request" : {
+        "parameters" : {
+          "cursor" : {
+            "type" : "string",
+            "required" : false
+          },
+          "limit" : {
+            "type" : "int32",
+            "required" : false
+          }
+        },
+        "body" : "empty"
+      },
+      "response" : {
+        "body" : "autoTemplate(backendResponse)"
+      }
+    },
     "scoreentityendpoint.getScoreEntity" : {
       "path" : "scoreentity/{id}",
       "httpMethod" : "GET",
@@ -60,31 +85,6 @@
       "request" : {
         "body" : "autoTemplate(backendRequest)",
         "bodyName" : "resource"
-      },
-      "response" : {
-        "body" : "autoTemplate(backendResponse)"
-      }
-    },
-    "scoreentityendpoint.listScoreEntity" : {
-      "path" : "scoreentity",
-      "httpMethod" : "GET",
-      "authLevel" : "NONE",
-      "scopes" : [ "https://www.googleapis.com/auth/userinfo.email" ],
-      "audiences" : [ ],
-      "clientIds" : [ "292824132082.apps.googleusercontent.com" ],
-      "rosyMethod" : "stuff.ScoreEntityEndpoint.listScoreEntity",
-      "request" : {
-        "parameters" : {
-          "cursor" : {
-            "type" : "string",
-            "required" : false
-          },
-          "limit" : {
-            "type" : "int32",
-            "required" : false
-          }
-        },
-        "body" : "empty"
       },
       "response" : {
         "body" : "autoTemplate(backendResponse)"
@@ -130,21 +130,6 @@
   },
   "descriptor" : {
     "schemas" : {
-      "ScoreEntity" : {
-        "id" : "ScoreEntity",
-        "type" : "object",
-        "properties" : {
-          "id" : {
-            "type" : "string"
-          },
-          "name" : {
-            "type" : "string"
-          },
-          "score" : {
-            "type" : "integer"
-          }
-        }
-      },
       "CollectionResponse_ScoreEntity" : {
         "id" : "CollectionResponse_ScoreEntity",
         "type" : "object",
@@ -159,9 +144,29 @@
             "type" : "string"
           }
         }
+      },
+      "ScoreEntity" : {
+        "id" : "ScoreEntity",
+        "type" : "object",
+        "properties" : {
+          "id" : {
+            "type" : "string"
+          },
+          "name" : {
+            "type" : "string"
+          },
+          "score" : {
+            "type" : "integer"
+          }
+        }
       }
     },
     "methods" : {
+      "stuff.ScoreEntityEndpoint.listScoreEntity" : {
+        "response" : {
+          "$ref" : "CollectionResponse_ScoreEntity"
+        }
+      },
       "stuff.ScoreEntityEndpoint.getScoreEntity" : {
         "response" : {
           "$ref" : "ScoreEntity"
@@ -173,11 +178,6 @@
         },
         "response" : {
           "$ref" : "ScoreEntity"
-        }
-      },
-      "stuff.ScoreEntityEndpoint.listScoreEntity" : {
-        "response" : {
-          "$ref" : "CollectionResponse_ScoreEntity"
         }
       },
       "stuff.ScoreEntityEndpoint.updateScoreEntity" : {

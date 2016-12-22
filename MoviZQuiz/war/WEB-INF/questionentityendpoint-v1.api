@@ -28,31 +28,6 @@
   "ownerName" : "mycompany.com",
   "packagePath" : "services",
   "methods" : {
-    "questionentityendpoint.listQuestionEntity" : {
-      "path" : "questionentity",
-      "httpMethod" : "GET",
-      "authLevel" : "NONE",
-      "scopes" : [ "https://www.googleapis.com/auth/userinfo.email" ],
-      "audiences" : [ ],
-      "clientIds" : [ "292824132082.apps.googleusercontent.com" ],
-      "rosyMethod" : "stuff.QuestionEntityEndpoint.listQuestionEntity",
-      "request" : {
-        "parameters" : {
-          "cursor" : {
-            "type" : "string",
-            "required" : false
-          },
-          "limit" : {
-            "type" : "int32",
-            "required" : false
-          }
-        },
-        "body" : "empty"
-      },
-      "response" : {
-        "body" : "autoTemplate(backendResponse)"
-      }
-    },
     "questionentityendpoint.insertQuestionEntity" : {
       "path" : "questionentity",
       "httpMethod" : "POST",
@@ -67,27 +42,6 @@
       },
       "response" : {
         "body" : "autoTemplate(backendResponse)"
-      }
-    },
-    "questionentityendpoint.removeQuestionEntity" : {
-      "path" : "questionentity/{id}",
-      "httpMethod" : "DELETE",
-      "authLevel" : "NONE",
-      "scopes" : [ "https://www.googleapis.com/auth/userinfo.email" ],
-      "audiences" : [ ],
-      "clientIds" : [ "292824132082.apps.googleusercontent.com" ],
-      "rosyMethod" : "stuff.QuestionEntityEndpoint.removeQuestionEntity",
-      "request" : {
-        "parameters" : {
-          "id" : {
-            "type" : "string",
-            "required" : true
-          }
-        },
-        "body" : "empty"
-      },
-      "response" : {
-        "body" : "empty"
       }
     },
     "questionentityendpoint.updateQuestionEntity" : {
@@ -126,25 +80,56 @@
       "response" : {
         "body" : "autoTemplate(backendResponse)"
       }
+    },
+    "questionentityendpoint.listQuestionEntity" : {
+      "path" : "questionentity",
+      "httpMethod" : "GET",
+      "authLevel" : "NONE",
+      "scopes" : [ "https://www.googleapis.com/auth/userinfo.email" ],
+      "audiences" : [ ],
+      "clientIds" : [ "292824132082.apps.googleusercontent.com" ],
+      "rosyMethod" : "stuff.QuestionEntityEndpoint.listQuestionEntity",
+      "request" : {
+        "parameters" : {
+          "cursor" : {
+            "type" : "string",
+            "required" : false
+          },
+          "limit" : {
+            "type" : "int32",
+            "required" : false
+          }
+        },
+        "body" : "empty"
+      },
+      "response" : {
+        "body" : "autoTemplate(backendResponse)"
+      }
+    },
+    "questionentityendpoint.removeQuestionEntity" : {
+      "path" : "questionentity/{id}",
+      "httpMethod" : "DELETE",
+      "authLevel" : "NONE",
+      "scopes" : [ "https://www.googleapis.com/auth/userinfo.email" ],
+      "audiences" : [ ],
+      "clientIds" : [ "292824132082.apps.googleusercontent.com" ],
+      "rosyMethod" : "stuff.QuestionEntityEndpoint.removeQuestionEntity",
+      "request" : {
+        "parameters" : {
+          "id" : {
+            "type" : "string",
+            "required" : true
+          }
+        },
+        "body" : "empty"
+      },
+      "response" : {
+        "body" : "empty"
+      }
     }
   },
   "descriptor" : {
     "schemas" : {
-      "CollectionResponse_QuestionEntity" : {
-        "id" : "CollectionResponse_QuestionEntity",
-        "type" : "object",
-        "properties" : {
-          "items" : {
-            "type" : "array",
-            "items" : {
-              "$ref" : "QuestionEntity"
-            }
-          },
-          "nextPageToken" : {
-            "type" : "string"
-          }
-        }
-      },
       "QuestionEntity" : {
         "id" : "QuestionEntity",
         "type" : "object",
@@ -165,14 +150,24 @@
             "type" : "string"
           }
         }
+      },
+      "CollectionResponse_QuestionEntity" : {
+        "id" : "CollectionResponse_QuestionEntity",
+        "type" : "object",
+        "properties" : {
+          "items" : {
+            "type" : "array",
+            "items" : {
+              "$ref" : "QuestionEntity"
+            }
+          },
+          "nextPageToken" : {
+            "type" : "string"
+          }
+        }
       }
     },
     "methods" : {
-      "stuff.QuestionEntityEndpoint.listQuestionEntity" : {
-        "response" : {
-          "$ref" : "CollectionResponse_QuestionEntity"
-        }
-      },
       "stuff.QuestionEntityEndpoint.insertQuestionEntity" : {
         "request" : {
           "$ref" : "QuestionEntity"
@@ -180,8 +175,6 @@
         "response" : {
           "$ref" : "QuestionEntity"
         }
-      },
-      "stuff.QuestionEntityEndpoint.removeQuestionEntity" : {
       },
       "stuff.QuestionEntityEndpoint.updateQuestionEntity" : {
         "request" : {
@@ -195,6 +188,13 @@
         "response" : {
           "$ref" : "QuestionEntity"
         }
+      },
+      "stuff.QuestionEntityEndpoint.listQuestionEntity" : {
+        "response" : {
+          "$ref" : "CollectionResponse_QuestionEntity"
+        }
+      },
+      "stuff.QuestionEntityEndpoint.removeQuestionEntity" : {
       }
     }
   }
